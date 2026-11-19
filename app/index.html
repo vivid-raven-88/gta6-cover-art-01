@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA VI style cover art maker</title>
+<meta name="description" content="Turn any photo and a caption into multi-panel GTA VI style cover art, offline in your browser.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NC</span>
+    <div>
+      <h1>Neon Coast Cover Studio</h1>
+      <p class="tagline">GTA VI style cover art maker — photos stay on your machine</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" disabled>Undo</button>
+    <button id="redoBtn" type="button" disabled>Redo</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="preview-pane">
+    <canvas id="preview" width="1080" height="1350" aria-label="Cover preview"></canvas>
+    <p id="panelLabel" class="panel-label">Panel 1 of 4 — Hero + Three</p>
+    <p class="hint">Click a panel to select it, then drag on the canvas to reposition its photo.</p>
+  </section>
+
+  <aside class="controls">
+    <section class="control-group">
+      <h2>1 · Layout</h2>
+      <div id="layoutPicker" class="picker"></div>
+    </section>
+
+    <section class="control-group">
+      <h2>2 · Colour grade</h2>
+      <div id="gradePicker" class="picker"></div>
+    </section>
+
+    <section class="control-group">
+      <h2>3 · Photos</h2>
+      <label class="upload-btn" for="uploadInput">Upload photos (up to 8)</label>
+      <input id="uploadInput" type="file" accept="image/*" multiple hidden>
+      <button id="sampleBtn" type="button">Load the 2 sample photos</button>
+      <div id="photoSlots" class="slots"></div>
+    </section>
+
+    <section class="control-group">
+      <h2>4 · Fill the selected panel</h2>
+      <div id="fillChoices" class="picker"></div>
+      <label class="field-label" for="zoomRange">Zoom <span id="zoomValue">100%</span></label>
+      <input id="zoomRange" type="range" min="1" max="2.5" step="0.01" value="1">
+      <label class="field-label" for="offsetX">Pan left / right</label>
+      <input id="offsetX" type="range" min="0" max="1" step="0.01" value="0.5">
+      <label class="field-label" for="offsetY">Pan up / down</label>
+      <input id="offsetY" type="range" min="0" max="1" step="0.01" value="0.5">
+    </section>
+
+    <section class="control-group">
+      <h2>5 · Caption</h2>
+      <label class="field-label" for="titleInput">Title</label>
+      <input id="titleInput" type="text" value="NEON COAST" maxlength="24">
+      <label class="field-label" for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" value="a Vice City story" maxlength="40">
+      <label class="field-label" for="badgeInput">Badge</label>
+      <input id="badgeInput" type="text" value="VICE CITY" maxlength="16">
+      <div class="stars-row">
+        <span>Heat meter</span>
+        <span class="stars" id="starRow">
+          <button type="button" data-star="1" aria-label="1 star">&#9733;</button>
+          <button type="button" data-star="2" aria-label="2 stars">&#9733;</button>
+          <button type="button" data-star="3" aria-label="3 stars">&#9733;</button>
+          <button type="button" data-star="4" aria-label="4 stars">&#9733;</button>
+          <button type="button" data-star="5" aria-label="5 stars">&#9733;</button>
+        </span>
+        <span id="starCount">4 / 5</span>
+      </div>
+      <label class="check"><input id="grainToggle" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignetteToggle" type="checkbox" checked> Vignette</label>
+    </section>
+
+    <section class="control-group">
+      <h2>6 · Export PNG</h2>
+      <div id="exportPicker" class="picker"></div>
+      <p id="exportNote" class="hint">Exports open as a download in your browser.</p>
+    </section>
+
+    <p class="fineprint">Original art only: no Rockstar Games logo, artwork or fonts. Titles use Anton and Pacifico under the SIL Open Font License (see app/fonts/FONTS.md). The procedural beach, boulevard, neon street, skyline, pier and marina scenes are drawn by this app.</p>
+  </aside>
+</main>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
